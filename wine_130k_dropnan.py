@@ -7,6 +7,9 @@ import csv
 data = pd.read_csv('wine-reviews/winemag-data-130k-v2.csv', encoding='utf-8',
                    usecols=['country', 'designation', 'province', 'taster_name', 'taster_twitter_handle', 'region_1',
                             'region_2', 'variety', 'winery', 'price', 'points'])
+path = 'fig_130k/dropnan/'
+if not os.path.exists(path):
+    os.makedirs(path)
 index_list = []
 for index, row in data.iterrows():
     if type(row['country']) == float and math.isnan(row['country']) \
@@ -20,6 +23,7 @@ for index, row in data.iterrows():
             or math.isnan(row['price']) or math.isnan(row['points']):
         index_list.append(index)
 data = data.drop(index_list)
+data.to_csv(path + "wine_130k_v2.csv", index=True, sep=',')
 
 
 def plot_bar(series, title):
@@ -46,12 +50,10 @@ def plot_bar(series, title):
     plt.title(title)
     plt.tight_layout()
 
-    plt.savefig('fig_130k/dropnan/Bar_for_' + title + '_in_wine_reviews_130k.jpg')
+    plt.savefig(path + 'Bar_for_' + title + '_in_wine_reviews_130k.jpg')
 
 
-path = 'fig_130k/dropnan/'
-if not os.path.exists(path):
-    os.makedirs(path)
+
 plot_bar(data['country'].value_counts(sort=True), 'country')
 plot_bar(data['designation'].value_counts(sort=True), 'designation')
 plot_bar(data['province'].value_counts(sort=True), 'province')
@@ -70,9 +72,7 @@ def five_number(num):
     Q3 = np.percentile(num, 75)
     return Minimun, Q1, Median, Q3, Maximum
 
-path = 'fig_130k_numerical/dropnan/'
-if not os.path.exists(path):
-    os.makedirs(path)
+
 plt.clf()
 data['points'].plot.box(title="Points")
 plt.grid(axis='y', linestyle='--')
