@@ -97,3 +97,27 @@ plot_bar(data_origin['winery'].value_counts(sort=True), data_dropnan['winery'].v
          data_high_frequency['winery'].value_counts(sort=True),
          data_similarity['winery'].value_counts(sort=True), 'winery')
 
+
+def plot_box(series_origin, series_dropnan, series_high_frequency, series_similarity, title):
+    plt.clf()
+    plt.subplot(141)
+    series_origin.plot.box(title='origin')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(142)
+    series_dropnan.plot.box(title='drop nan')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(143)
+    series_high_frequency.plot.box(title='high frequency')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(144)
+    series_similarity.plot.box(title='similarity')
+    plt.grid(axis='y', linestyle='--')
+    plt.tight_layout()
+    plt.savefig(path + 'Box_for_' + title + '_in_wine_reviews_150k.jpg')
+
+
+plot_box(data_origin['price'], data_dropnan['price'], data_high_frequency['price'],
+         data_similarity['price'], 'price')
+
+plot_box(data_origin['points'], data_dropnan['points'], data_high_frequency['points'],
+         data_similarity['points'], 'points')

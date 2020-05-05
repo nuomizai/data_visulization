@@ -122,3 +122,31 @@ plot_bar(data_origin['taster_twitter_handle'].value_counts(sort=True),
          data_high_frequency['taster_twitter_handle'].value_counts(sort=True),
          data_relationship['taster_twitter_handle'].value_counts(sort=True),
          data_similarity['taster_twitter_handle'].value_counts(sort=True), 'taster_twitter_handle')
+
+
+def plot_box(series_origin, series_dropnan, series_high_frequency, series_relationship, series_similarity, title):
+    plt.clf()
+    plt.subplot(151)
+    series_origin.plot.box(title='origin')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(152)
+    series_dropnan.plot.box(title='drop nan')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(153)
+    series_high_frequency.plot.box(title='high frequency')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(154)
+    series_relationship.plot.box(title='relationship')
+    plt.grid(axis='y', linestyle='--')
+    plt.subplot(155)
+    series_similarity.plot.box(title='similarity')
+    plt.grid(axis='y', linestyle='--')
+    plt.tight_layout()
+    plt.savefig(path + 'Box_for_' + title + '_in_wine_reviews_130k.jpg')
+
+
+plot_box(data_origin['price'], data_dropnan['price'], data_high_frequency['price'], data_relationship['price'],
+         data_similarity['price'], 'price')
+
+plot_box(data_origin['points'], data_dropnan['points'], data_high_frequency['points'], data_relationship['points'],
+         data_similarity['points'], 'points')
