@@ -205,6 +205,7 @@ while index_i < tnt_data:
     if index_i % 200 == 0:
         print(index_i)
     if isnan(data.iat[index_i, name_list['raw_visit_count']]):
+        index_i += 1
         continue
     if isnan(data.iat[index_i, name_list['visitor_home_cbgs']]):
         get_index('visitor_home_cbgs')
@@ -230,6 +231,7 @@ while index_i < tnt_data:
     if index_i % 200 == 0:
         print(index_i)
     if isnan(data.iat[index_i, name_list['raw_visit_count']]):
+        index_i += 1
         continue
     if isnan(data.iat[index_i, name_list['visitor_home_cbgs']]):
         data.loc[index_i, 'visitor_home_cbgs'] = data['visitor_home_cbgs'][indexes[cnt]]
