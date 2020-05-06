@@ -116,12 +116,4 @@ plt.savefig(path + 'Box_for_distance_from_home_in_visit.jpg')
 minimum, q1, median, q3, maximum = five_number(data['distance_from_home'])
 csv_writer.writerow(['distance_from_home', minimum, q1, median, q3, maximum])
 
-plt.clf()
-data['distance_from_home'].plot.box(title="distance_from_home")
-plt.grid(axis='y', linestyle='--')
-plt.tight_layout()
-plt.savefig(path + 'Box_for_distance_from_home_in_visit.jpg')
-minimum, q1, median, q3, maximum = five_number(data['distance_from_home'])
-csv_writer.writerow(['distance_from_home', minimum, q1, median, q3, maximum])
-
 f.close()
