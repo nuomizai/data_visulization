@@ -22,10 +22,10 @@ for index, row in data.iterrows():
         designation = re.findall(r'[0-9][0-9][0-9][0-9](.*?)[(]', row['title'])
         if len(designation) > 0:
             data.loc[index, 'designation'] = designation[0]
-    if type(row['region_1']) == float and math.isnan(row['region_1']):
-        region_1 = re.findall(r'[(](.*?)[)]', row['title'])
-        if len(region_1) > 0:
-            data.loc[index, 'region_1'] = region_1[0]
+    if type(row['region_2']) == float and math.isnan(row['region_2']):
+        region_2 = re.findall(r'[(](.*?)[)]', row['title'])
+        if len(region_2) > 0:
+            data.loc[index, 'region_2'] = region_2[0]
     if type(row['variety']) == float and math.isnan(row['variety']):
         print(index, 'variety')
     if type(row['winery']) == float and math.isnan(row['winery']):
